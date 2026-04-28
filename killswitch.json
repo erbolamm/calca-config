@@ -1,0 +1,14 @@
+{
+  "_comment": "KillSwitch remoto de CalcaApp. Subir a CDN externo (NO Firebase). Editar este archivo y re-deployar para reaccionar a incidentes en caliente sin release nueva.",
+  "_lastUpdated": "2026-04-28",
+  "_incidentRef": "Suspension proyecto Firebase abr 2026",
+
+  "schemaVersion": 1,
+
+  "firebaseEnabled": true,
+  "aiFeaturesEnabled": false,
+
+  "maintenanceBanner": null,
+
+  "minVersionRequired": null
+}
