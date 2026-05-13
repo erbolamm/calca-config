@@ -1,0 +1,398 @@
+ <!doctype html>
+ <html lang="es">
+ <head>
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width,initial-scale=1" />
+   <title>CalcaApp Roadmap</title>
+   <style>
+     :root {
+       --user-rgb: 99, 102, 241; /* <-- color del usuario en RGB */
+       --bg: #0f1220;
+       --surface: rgba(255, 255, 255, 0.88);
+       --surface-2: rgba(255, 255, 255, 0.72);
+       --text: #111827;
+       --muted: #6b7280;
+       --radius: 18px;
+       --shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
+     }
+ 
+     * { box-sizing: border-box; }
+     body {
+       margin: 0;
+       font-family: Inter, system-ui, sans-serif;
+       color: var(--text);
+       background:
+         linear-gradient(
+           180deg,
+           rgba(var(--user-rgb), 0.22),
+           rgba(var(--user-rgb), 0.10)
+         ),
+         radial-gradient(
+           circle at top right,
+           rgba(var(--user-rgb), 0.20),
+           transparent 35%
+         ),
+         var(--bg);
+       min-height: 100vh;
+     }
+ 
+     .wrap {
+       width: min(980px, calc(100% - 24px));
+       margin: 0 auto;
+       padding: 20px 0 40px;
+     }
+ 
+     .topbar {
+       position: sticky;
+       top: 0;
+       z-index: 10;
+       backdrop-filter: blur(10px);
+       background: rgba(15, 18, 32, 0.55);
+       border-bottom: 1px solid rgba(255,255,255,0.08);
+     }
+ 
+     .topbar-inner {
+       width: min(980px, calc(100% - 24px));
+       margin: 0 auto;
+       padding: 14px 0;
+       display: flex;
+       align-items: center;
+       justify-content: space-between;
+       color: white;
+     }
+ 
+     .title {
+       font-size: 22px;
+       font-weight: 800;
+       letter-spacing: -0.02em;
+     }
+ 
+     .chip {
+       padding: 8px 12px;
+       border-radius: 999px;
+       background: rgba(var(--user-rgb), 0.22);
+       border: 1px solid rgba(255,255,255,0.12);
+       color: white;
+       font-size: 13px;
+       font-weight: 600;
+     }
+ 
+     .quarter {
+       margin-top: 20px;
+       overflow: hidden;
+       border-radius: 16px;
+       background: rgba(255,255,255,0.06);
+       border: 1px solid rgba(255,255,255,0.08);
+     }
+ 
+     .quarter-header {
+       padding: 14px 16px;
+       background: rgba(var(--user-rgb), 0.14);
+       color: white;
+       font-size: 18px;
+       font-weight: 800;
+       letter-spacing: -0.01em;
+     }
+ 
+     .quarter-body {
+       padding: 10px;
+     }
+ 
+     .card {
+       width: 100%;
+       border: 0;
+       text-align: left;
+       display: grid;
+       grid-template-columns: 4px 1fr auto;
+       gap: 12px;
+       align-items: center;
+       padding: 14px;
+       margin: 8px 0;
+       border-radius: var(--radius);
+       background: var(--surface);
+       box-shadow: var(--shadow);
+       cursor: pointer;
+     }
+ 
+     .status-bar {
+       width: 4px;
+       height: 44px;
+       border-radius: 999px;
+     }
+ 
+     .card-title {
+       margin: 0 0 4px;
+       font-size: 17px;
+       font-weight: 800;
+       letter-spacing: -0.02em;
+     }
+ 
+     .card-subtitle {
+       margin: 0;
+       color: var(--muted);
+       font-size: 13px;
+     }
+ 
+     .badge {
+       border: 0;
+       border-radius: 999px;
+       padding: 6px 10px;
+       font-size: 12px;
+       font-weight: 700;
+       background: rgba(var(--user-rgb), 0.10);
+       color: #374151;
+       white-space: nowrap;
+     }
+ 
+     .icon {
+       font-size: 24px;
+       margin-left: 8px;
+     }
+ 
+     dialog {
+       width: min(720px, calc(100% - 20px));
+       border: 0;
+       padding: 0;
+       border-radius: 24px 24px 0 0;
+       margin: auto auto 0 auto;
+       box-shadow: 0 -10px 40px rgba(0,0,0,.25);
+       background: var(--surface);
+     }
+ 
+     dialog::backdrop {
+       background: rgba(0,0,0,.45);
+       backdrop-filter: blur(4px);
+     }
+ 
+     .sheet {
+       padding: 18px 18px 28px;
+     }
+ 
+     .grabber {
+       width: 44px;
+       height: 5px;
+       border-radius: 999px;
+       background: rgba(0,0,0,.14);
+       margin: 0 auto 18px;
+     }
+ 
+     .sheet-head {
+       display: flex;
+       align-items: start;
+       justify-content: space-between;
+       gap: 12px;
+     }
+ 
+     .sheet-title {
+       margin: 0;
+       font-size: 24px;
+       font-weight: 900;
+       letter-spacing: -0.03em;
+     }
+ 
+     .detail {
+       margin-top: 16px;
+       padding: 14px 16px;
+       border-radius: 16px;
+       background: var(--surface-2);
+     }
+ 
+     .detail strong {
+       display: inline-block;
+       min-width: 92px;
+     }
+ 
+     .notes-title {
+       margin: 22px 0 8px;
+       font-size: 16px;
+       font-weight: 800;
+     }
+ 
+     .notes {
+       margin: 0;
+       padding: 16px;
+       border-radius: 16px;
+       background: rgba(var(--user-rgb), 0.08);
+       line-height: 1.55;
+     }
+ 
+     .close {
+       border: 0;
+       background: rgba(0,0,0,.06);
+       border-radius: 999px;
+       width: 38px;
+       height: 38px;
+       font-size: 18px;
+       cursor: pointer;
+     }
+ 
+     @media (max-width: 640px) {
+       .card { grid-template-columns: 4px 1fr; }
+       .right { grid-column: 2; display: flex; gap: 8px; align-items: center; }
+     }
+   </style>
+ </head>
+ <body>
+   <div class="topbar">
+     <div class="topbar-inner">
+       <div class="title">Novedades</div>
+       <div class="chip">Color usuario + opacidad</div>
+     </div>
+   </div>
+ 
+   <main class="wrap" id="app"></main>
+ 
+   <dialog id="sheet">
+     <div class="sheet">
+       <div class="grabber"></div>
+       <div class="sheet-head">
+         <div>
+           <h2 class="sheet-title" id="sheetTitle"></h2>
+         </div>
+         <button class="close" id="closeSheet">✕</button>
+       </div>
+ 
+       <div class="detail" id="sheetMeta"></div>
+ 
+       <div class="notes-title">Notas</div>
+       <p class="notes" id="sheetNotes"></p>
+     </div>
+   </dialog>
+ 
+   <script>
+     const roadmap = [
+       {
+         trimestre: "Q3 2025",
+         funcionalidad: "Conexión de dispositivos",
+         categoria: "Conectividad",
+         estado: "Lanzado",
+         prioridad: "🔴 Alta",
+         plataforma: "Ambas",
+         notas: "Proyección en milisegundos con reconexión automática"
+       },
+       {
+         trimestre: "Q4 2025",
+         funcionalidad: "Sistema de puntos PRO",
+         categoria: "Monetización",
+         estado: "Lanzado",
+         prioridad: "🔴 Alta",
+         plataforma: "Ambas",
+         notas: "10 min de arte = puntos canjeables por días premium"
+       },
+       {
+         trimestre: "Q4 2025",
+         funcionalidad: "15 idiomas + árabe RTL",
+         categoria: "Localización",
+         estado: "Lanzado",
+         prioridad: "🟡 Media",
+         plataforma: "Ambas",
+         notas: "Soporte completo RTL para árabe"
+       },
+       {
+         trimestre: "Q1 2026",
+         funcionalidad: "Modo AR",
+         categoria: "Realidad Aumentada",
+         estado: "En testing",
+         prioridad: "🔴 Alta",
+         plataforma: "Ambas",
+         notas: "Puede bloquearse si hay muchos errores"
+       },
+       {
+         trimestre: "Q2 2026",
+         funcionalidad: "Time-Lapse Video",
+         categoria: "Creatividad",
+         estado: "En roadmap",
+         prioridad: "🟡 Media",
+         plataforma: "Ambas",
+         notas: "Perfecto para TikTok Reels y YouTube"
+       }
+     ];
+ 
+     function statusColor(estado) {
+       const v = estado.toLowerCase();
+       if (v.includes("lanzado")) return "#22c55e";
+       if (v.includes("testing")) return "#3b82f6";
+       if (v.includes("roadmap") || v.includes("planificado")) return "#f59e0b";
+       if (v.includes("cancelado")) return "#9ca3af";
+       return "#64748b";
+     }
+ 
+     function statusIcon(estado) {
+       const v = estado.toLowerCase();
+       if (v.includes("lanzado")) return "✅";
+       if (v.includes("testing")) return "🧪";
+       if (v.includes("roadmap") || v.includes("planificado")) return "📋";
+       if (v.includes("cancelado")) return "⛔";
+       return "ℹ️";
+     }
+ 
+     const grouped = roadmap.reduce((acc, item) => {
+       (acc[item.trimestre] ||= []).push(item);
+       return acc;
+     }, {});
+ 
+     const app = document.getElementById("app");
+     const sheet = document.getElementById("sheet");
+     const sheetTitle = document.getElementById("sheetTitle");
+     const sheetMeta = document.getElementById("sheetMeta");
+     const sheetNotes = document.getElementById("sheetNotes");
+     const closeSheet = document.getElementById("closeSheet");
+ 
+     Object.entries(grouped).forEach(([trimestre, items]) => {
+       const section = document.createElement("section");
+       section.className = "quarter";
+ 
+       section.innerHTML = `
+         <div class="quarter-header">${trimestre}</div>
+         <div class="quarter-body"></div>
+       `;
+ 
+       const body = section.querySelector(".quarter-body");
+ 
+       items.forEach(item => {
+         const button = document.createElement("button");
+         button.className = "card";
+         button.innerHTML = `
+           <div class="status-bar" style="background:${statusColor(item.estado)}"></div>
+           <div>
+             <h3 class="card-title">${item.funcionalidad}</h3>
+             <p class="card-subtitle">${item.categoria} · ${item.plataforma}</p>
+           </div>
+           <div class="right">
+             <span class="badge">${item.prioridad}</span>
+             <span class="icon">${statusIcon(item.estado)}</span>
+           </div>
+         `;
+ 
+         button.addEventListener("click", () => {
+           sheetTitle.textContent = item.funcionalidad;
+           sheetMeta.innerHTML = `
+             <div><strong>Estado:</strong> <span style="color:${statusColor(item.estado)};font-weight:700">${item.estado}</span></div>
+             <div><strong>Prioridad:</strong> ${item.prioridad}</div>
+             <div><strong>Trimestre:</strong> ${item.trimestre}</div>
+             <div><strong>Categoría:</strong> ${item.categoria}</div>
+             <div><strong>Plataforma:</strong> ${item.plataforma}</div>
+           `;
+           sheetNotes.textContent = item.notas;
+           sheet.showModal();
+         });
+ 
+         body.appendChild(button);
+       });
+ 
+       app.appendChild(section);
+     });
+ 
+     closeSheet.addEventListener("click", () => sheet.close());
+     sheet.addEventListener("click", (e) => {
+       const rect = sheet.getBoundingClientRect();
+       const inside =
+         e.clientX >= rect.left &&
+         e.clientX <= rect.right &&
+         e.clientY >= rect.top &&
+         e.clientY <= rect.bottom;
+       if (!inside) sheet.close();
+     });
+   </script>
+ </body>
+ </html>
