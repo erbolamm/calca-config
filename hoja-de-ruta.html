@@ -1,1 +1,433 @@
 https://erbolamm.github.io/calca-config/
+
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CalcaApp - Roadmap</title>
+  <style>
+    :root {
+      --color-lanzado: #22c55e;
+      --color-testing: #f59e0b;
+      --color-roadmap: #6b7280;
+      --prioridad-alta: #ef4444;
+      --prioridad-media: #f59e0b;
+      --bg-primary: rgba(255, 255, 255, 0.95);
+      --bg-secondary: rgba(243, 244, 246, 0.9);
+      --text-primary: #111827;
+      --text-secondary: #374151;
+      --border-color: rgba(0, 0, 0, 0.1);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-primary: rgba(31, 41, 55, 0.95);
+        --bg-secondary: rgba(55, 65, 81, 0.9);
+        --text-primary: #f9fafb;
+        --text-secondary: #d1d5db;
+        --border-color: rgba(255, 255, 255, 0.1);
+      }
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding: 2rem;
+      background: var(--bg-primary);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    header h1 {
+      color: var(--text-primary);
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+    .roadmap-grid {
+      display: grid;
+      gap: 1rem;
+    }
+    .roadmap-item {
+      background: var(--bg-primary);
+      border-radius: 12px;
+      padding: 1.5rem;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border: 1px solid var(--border-color);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .roadmap-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    }
+    .roadmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .roadmap-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      flex: 1;
+    }
+    .roadmap-badges {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.025em;
+    }
+    .badge-estado {
+      color: white;
+    }
+    .badge-lanzado { background: var(--color-lanzado); }
+    .badge-testing { background: var(--color-testing); }
+    .badge-roadmap { background: var(--color-roadmap); }
+    .badge-prioridad {
+      background: transparent;
+      border: 2px solid;
+    }
+    .badge-prioridad-alta {
+      color: var(--prioridad-alta);
+      border-color: var(--prioridad-alta);
+    }
+    .badge-prioridad-media {
+      color: var(--prioridad-media);
+      border-color: var(--prioridad-media);
+    }
+    .roadmap-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+    }
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+    .meta-label {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.25rem;
+    }
+    .meta-value {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    .roadmap-notas {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border-color);
+      line-height: 1.5;
+    }
+    .roadmap-notas strong {
+      color: var(--text-primary);
+    }
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem;
+      }
+      header h1 {
+        font-size: 1.75rem;
+      }
+      .roadmap-header {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .roadmap-meta {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🗺️ CalcaApp Roadmap</h1>
+      <p>Seguimiento de funcionalidades y mejoras planificadas</p>
+    </header>
+    <div class="roadmap-grid">
+      <!-- Item 1 -->
+      <div class="roadmap-item">
+        <div class="roadmap-header">
+          <h2 class="roadmap-title">1. Conectar dispositivos / Connecting devices</h2>
+          <div class="roadmap-badges">
+            <span class="badge badge-estado badge-lanzado">✅ Lanzado</span>
+            <span class="badge badge-prioridad badge-prioridad-alta">🔴 Alta</span>
+          </div>
+        </div>
+        <div class="roadmap-meta">
+          <div class="meta-item">
+            <span class="meta-label">Categoría</span>
+            <span class="meta-value">Conectividad</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Trimestre</span>
+            <span class="meta-value">Q3 2025</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Plataforma</span>
+            <span class="meta-value">Ambas</span>
+          </div>
+        </div>
+        <div class="roadmap-notas">
+          <strong>Notas:</strong> Proyección en milisegundos con reconexión automática
+        </div>
+      </div>
+      <!-- Item 2 -->
+      <div class="roadmap-item">
+        <div class="roadmap-header">
+          <h2 class="roadmap-title">2. Sistema de puntos PRO</h2>
+          <div class="roadmap-badges">
+            <span class="badge badge-estado badge-lanzado">✅ Lanzado</span>
+            <span class="badge badge-prioridad badge-prioridad-alta">🔴 Alta</span>
+          </div>
+        </div>
+        <div class="roadmap-meta">
+          <div class="meta-item">
+            <span class="meta-label">Categoría</span>
+            <span class="meta-value">Monetización</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Trimestre</span>
+            <span class="meta-value">Q4 2025</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Plataforma</span>
+            <span class="meta-value">Ambas</span>
+          </div>
+        </div>
+        <div class="roadmap-notas">
+          <strong>Notas:</strong> 10 min de arte = puntos canjeables por días premium
+        </div>
+      </div>
+      <!-- Item 3 -->
+      <div class="roadmap-item">
+        <div class="roadmap-header">
+          <h2 class="roadmap-title">3. Captura con marca de agua</h2>
+          <div class="roadmap-badges">
+            <span class="badge badge-estado badge-lanzado">✅ Lanzado</span>
+            <span class="badge badge-prioridad badge-prioridad-media">🟡 Media</span>
+          </div>
+        </div>
+        <div class="roadmap-meta">
+          <div class="meta-item">
+            <span class="meta-label">Categoría</span>
+            <span class="meta-value">Compartir</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Trimestre</span>
+            <span class="meta-value">Q1 2026</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Plataforma</span>
+            <span class="meta-value">Ambas</span>
+          </div>
+        </div>
+        <div class="roadmap-notas">
+          <strong>Notas:</strong> Logo CalcaApp y calcaapp.com en la esquina
+        </div>
+      </div>
+      <!-- Item 4 -->
+      <div class="roadmap-item">
+        <div class="roadmap-header">
+          <h2 class="roadmap-title">4. 17 idiomas</h2>
+          <div class="roadmap-badges">
+            <span class="badge badge-estado badge-lanzado">✅ Lanzado</span>
+            <span class="badge badge-prioridad badge-prioridad-media">🟡 Media</span>
+          </div>
+        </div>
+        <div class="roadmap-meta">
+          <div class="meta-item">
+            <span class="meta-label">Categoría</span>
+            <span class="meta-value">Localización</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Trimestre</span>
+            <span class="meta-value">Q2 2026</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Plataforma</span>
+            <span class="meta-value">Ambas</span>
+          </div>
+        </div>
+        <div class="roadmap-notas">
+          <strong>Notas:</strong> Soporte completo RTL para árabe
+        </div>
+      </div>
+      <!-- Item 5 -->
+      <div class="roadmap-item">
+        <div class="roadmap-header">
+          <h2 class="roadmap-title">5. Modo AR</h2>
+          <div class="roadmap-badges">
+            <span class="badge badge-estado badge-testing">🧪 En testing</span>
+            <span class="badge badge-prioridad badge-prioridad-alta">🔴 Alta</span>
+          </div>
+        </div>
+        <div class="roadmap-meta">
+          <div class="meta-item">
+            <span class="meta-label">Categoría</span>
+            <span class="meta-value">Realidad Aumentada</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Trimestre</span>
+            <span class="meta-value">Q2 2026</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Plataforma</span>
+            <span class="meta-value">Ambas</span>
+          </div>
+        </div>
+        <div class="roadmap-notas">
+          <strong>Notas:</strong> Puede bloquearse si hay muchos errores
+        </div>
+      </div>
+      <!-- Item 6 -->
+      <div class="roadmap-item">
+        <div class="roadmap-header">
+          <h2 class="roadmap-title">6. Time-Lapse Video</h2>
+          <div class="roadmap-badges">
+            <span class="badge badge-estado badge-roadmap">📋 En roadmap</span>
+            <span class="badge badge-prioridad badge-prioridad-media">🟡 Media</span>
+          </div>
+        </div>
+        <div class="roadmap-meta">
+          <div class="meta-item">
+            <span class="meta-label">Categoría</span>
+            <span class="meta-value">Creatividad</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Trimestre</span>
+            <span class="meta-value">Q2 2026</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Plataforma</span>
+            <span class="meta-value">Ambas</span>
+          </div>
+        </div>
+        <div class="roadmap-notas">
+          <strong>Notas:</strong> Perfecto para TikTok Reels y YouTube
+        </div>
+      </div>
+      <!-- Item 7 -->
+      <div class="roadmap-item">
+        <div class="roadmap-header">
+          <h2 class="roadmap-title">7. IA: Foto a Boceto</h2>
+          <div class="roadmap-badges">
+            <span class="badge badge-estado badge-roadmap">📋 En roadmap</span>
+            <span class="badge badge-prioridad badge-prioridad-alta">🔴 Alta</span>
+          </div>
+        </div>
+        <div class="roadmap-meta">
+          <div class="meta-item">
+            <span class="meta-label">Categoría</span>
+            <span class="meta-value">Inteligencia Artificial</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Trimestre</span>
+            <span class="meta-value">Q3 2026</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Plataforma</span>
+            <span class="meta-value">Ambas</span>
+          </div>
+        </div>
+        <div class="roadmap-notas">
+          <strong>Notas:</strong> Convierte fotos en líneas de contorno para calcar
+        </div>
+      </div>
+      <!-- Item 8 -->
+      <div class="roadmap-item">
+        <div class="roadmap-header">
+          <h2 class="roadmap-title">8. IA Generativa</h2>
+          <div class="roadmap-badges">
+            <span class="badge badge-estado badge-roadmap">📋 En roadmap</span>
+            <span class="badge badge-prioridad badge-prioridad-media">🟡 Media</span>
+          </div>
+        </div>
+        <div class="roadmap-meta">
+          <div class="meta-item">
+            <span class="meta-label">Categoría</span>
+            <span class="meta-value">Inteligencia Artificial</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Trimestre</span>
+            <span class="meta-value">Q4 2026</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Plataforma</span>
+            <span class="meta-value">Ambas</span>
+          </div>
+        </div>
+        <div class="roadmap-notas">
+          <strong>Notas:</strong> Genera bocetos desde descripción de texto
+        </div>
+      </div>
+      <!-- Item 9 -->
+      <div class="roadmap-item">
+        <div class="roadmap-header">
+          <h2 class="roadmap-title">9. Calca Cloud</h2>
+          <div class="roadmap-badges">
+            <span class="badge badge-estado badge-roadmap">📋 En roadmap</span>
+            <span class="badge badge-prioridad badge-prioridad-media">🟡 Media</span>
+          </div>
+        </div>
+        <div class="roadmap-meta">
+          <div class="meta-item">
+            <span class="meta-label">Categoría</span>
+            <span class="meta-value">Sincronización</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Trimestre</span>
+            <span class="meta-value">Q4 2026</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Plataforma</span>
+            <span class="meta-value">Ambas</span>
+          </div>
+        </div>
+        <div class="roadmap-notas">
+          <strong>Notas:</strong> Sincroniza proyectos entre dispositivos
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
