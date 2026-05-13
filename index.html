@@ -1,467 +1,306 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CalcaApp - Roadmap</title>
+<section class="calca-roadmap">
   <style>
-    :root {
-      --color-lanzado: #22c55e;
-      --color-testing: #f59e0b;
-      --color-roadmap: #6b7280;
-      --prioridad-alta: #ef4444;
-      --prioridad-media: #f59e0b;
-      --bg-primary: rgba(255, 255, 255, 0.95);
-      --bg-secondary: rgba(243, 244, 246, 0.9);
-      --text-primary: #111827;
-      --text-secondary: #374151;
-      --border-color: rgba(0, 0, 0, 0.1);
-    }
+    .calca-roadmap {
+      --text: #fff;
+      --muted: rgba(255,255,255,.78);
+      --card: rgba(255,255,255,.14);
+      --soft: rgba(255,255,255,.08);
+      --border: rgba(255,255,255,.24);
 
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg-primary: rgba(31, 41, 55, 0.95);
-        --bg-secondary: rgba(55, 65, 81, 0.9);
-        --text-primary: #f9fafb;
-        --text-secondary: #d1d5db;
-        --border-color: rgba(255, 255, 255, 0.1);
-      }
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      padding: 2rem;
-    }
-
-    .container {
-      max-width: 1400px;
+      max-width: 1200px;
       margin: 0 auto;
+      padding: 24px;
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: transparent !important;
     }
 
-    header {
+    .calca-roadmap * { box-sizing: border-box; }
+
+    .calca-roadmap h1 {
+      margin: 0 0 8px;
       text-align: center;
-      margin-bottom: 2rem;
-      padding: 2rem;
-      background: var(--bg-primary);
-      border-radius: 16px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: #fff;
+      text-shadow: 0 2px 14px rgba(0,0,0,.45);
     }
 
-    header h1 {
-      color: var(--text-primary);
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    header p {
-      color: var(--text-secondary);
-      font-size: 1.1rem;
+    .calca-roadmap .intro {
+      margin: 0 0 24px;
+      text-align: center;
+      color: var(--muted);
     }
 
     .roadmap-grid {
       display: grid;
-      gap: 1rem;
+      gap: 16px;
     }
 
     .roadmap-item {
-      background: var(--bg-primary);
-      border-radius: 12px;
-      padding: 1.5rem;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      border: 1px solid var(--border-color);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .roadmap-item:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 18px;
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      box-shadow:
+        0 8px 32px rgba(0,0,0,.22),
+        inset 0 1px 0 rgba(255,255,255,.22);
     }
 
     .roadmap-header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 1rem;
+      gap: 12px;
       flex-wrap: wrap;
-      gap: 0.5rem;
+      margin-bottom: 14px;
     }
 
     .roadmap-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      flex: 1;
+      margin: 0;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
     }
 
     .roadmap-badges {
       display: flex;
-      gap: 0.5rem;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
     .badge {
-      padding: 0.25rem 0.75rem;
-      border-radius: 9999px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.025em;
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: .75rem;
+      font-weight: 700;
+      white-space: nowrap;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.24);
+      background: rgba(255,255,255,.14);
     }
 
-    .badge-estado {
-      color: white;
+    .badge-lanzado { background: rgba(22,163,74,.9); }
+    .badge-testing { background: rgba(217,119,6,.9); }
+    .badge-roadmap { background: rgba(107,114,128,.9); }
+
+    .badge-alta {
+      color: #fecaca;
+      border: 2px solid rgba(248,113,113,.9);
+      background: rgba(239,68,68,.16);
     }
 
-    .badge-lanzado { background: var(--color-lanzado); }
-    .badge-testing { background: var(--color-testing); }
-    .badge-roadmap { background: var(--color-roadmap); }
-
-    .badge-prioridad {
-      background: transparent;
-      border: 2px solid;
-    }
-
-    .badge-prioridad-alta {
-      color: var(--prioridad-alta);
-      border-color: var(--prioridad-alta);
-    }
-
-    .badge-prioridad-media {
-      color: var(--prioridad-media);
-      border-color: var(--prioridad-media);
+    .badge-media {
+      color: #fde68a;
+      border: 2px solid rgba(245,158,11,.9);
+      background: rgba(245,158,11,.16);
     }
 
     .roadmap-meta {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 0.75rem;
-      margin-bottom: 1rem;
-      padding: 1rem;
-      background: var(--bg-secondary);
-      border-radius: 8px;
-    }
-
-    .meta-item {
-      display: flex;
-      flex-direction: column;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+      padding: 14px;
+      margin-bottom: 12px;
+      background: var(--soft);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 14px;
     }
 
     .meta-label {
-      font-size: 0.75rem;
-      color: var(--text-secondary);
+      display: block;
+      margin-bottom: 4px;
+      font-size: .72rem;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.25rem;
+      letter-spacing: .05em;
+      color: var(--muted);
     }
 
     .meta-value {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--text-primary);
+      font-size: .92rem;
+      font-weight: 600;
+      color: #fff;
     }
 
     .roadmap-notas {
-      font-size: 0.875rem;
-      color: var(--text-secondary);
-      padding-top: 0.75rem;
-      border-top: 1px solid var(--border-color);
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,.14);
+      font-size: .92rem;
       line-height: 1.5;
+      color: var(--muted);
     }
 
-    .roadmap-notas strong {
-      color: var(--text-primary);
+    .roadmap-notas strong { color: #fff; }
+
+    .roadmap-error {
+      padding: 16px;
+      border-radius: 16px;
+      color: #fff;
+      background: rgba(239,68,68,.22);
+      border: 1px solid rgba(248,113,113,.5);
     }
 
     @media (max-width: 640px) {
-      body {
-        padding: 1rem;
-      }
-
-      header h1 {
-        font-size: 1.75rem;
-      }
-
-      .roadmap-header {
-        flex-direction: column;
-        gap: 0.75rem;
-      }
-
-      .roadmap-meta {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .calca-roadmap { padding: 16px; }
+      .roadmap-meta { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <h1>🗺️ CalcaApp Roadmap</h1>
-      <p>Seguimiento de funcionalidades y mejoras planificadas</p>
-    </header>
 
-    <div class="roadmap-grid">
-      <!-- Item 1 -->
-      <div class="roadmap-item">
-        <div class="roadmap-header">
-          <h2 class="roadmap-title">1. Conectar dispositivos / Connecting devices</h2>
-          <div class="roadmap-badges">
-            <span class="badge badge-estado badge-lanzado">✅ Lanzado</span>
-            <span class="badge badge-prioridad badge-prioridad-alta">🔴 Alta</span>
-          </div>
-        </div>
-        <div class="roadmap-meta">
-          <div class="meta-item">
-            <span class="meta-label">Categoría</span>
-            <span class="meta-value">Conectividad</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Trimestre</span>
-            <span class="meta-value">Q3 2025</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Plataforma</span>
-            <span class="meta-value">Ambas</span>
-          </div>
-        </div>
-        <div class="roadmap-notas">
-          <strong>Notas:</strong> Proyección en milisegundos con reconexión automática
-        </div>
-      </div>
+  <h1>🗺️ CalcaApp Roadmap</h1>
+  <p class="intro">Seguimiento de funcionalidades y mejoras planificadas</p>
 
-      <!-- Item 2 -->
-      <div class="roadmap-item">
-        <div class="roadmap-header">
-          <h2 class="roadmap-title">2. Sistema de puntos PRO</h2>
-          <div class="roadmap-badges">
-            <span class="badge badge-estado badge-lanzado">✅ Lanzado</span>
-            <span class="badge badge-prioridad badge-prioridad-alta">🔴 Alta</span>
-          </div>
-        </div>
-        <div class="roadmap-meta">
-          <div class="meta-item">
-            <span class="meta-label">Categoría</span>
-            <span class="meta-value">Monetización</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Trimestre</span>
-            <span class="meta-value">Q4 2025</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Plataforma</span>
-            <span class="meta-value">Ambas</span>
-          </div>
-        </div>
-        <div class="roadmap-notas">
-          <strong>Notas:</strong> 10 min de arte = puntos canjeables por días premium
-        </div>
-      </div>
+  <div id="calca-roadmap-grid" class="roadmap-grid"></div>
 
-      <!-- Item 3 -->
-      <div class="roadmap-item">
-        <div class="roadmap-header">
-          <h2 class="roadmap-title">3. Captura con marca de agua</h2>
-          <div class="roadmap-badges">
-            <span class="badge badge-estado badge-lanzado">✅ Lanzado</span>
-            <span class="badge badge-prioridad badge-prioridad-media">🟡 Media</span>
-          </div>
-        </div>
-        <div class="roadmap-meta">
-          <div class="meta-item">
-            <span class="meta-label">Categoría</span>
-            <span class="meta-value">Compartir</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Trimestre</span>
-            <span class="meta-value">Q1 2026</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Plataforma</span>
-            <span class="meta-value">Ambas</span>
-          </div>
-        </div>
-        <div class="roadmap-notas">
-          <strong>Notas:</strong> Logo CalcaApp y calcaapp.com en la esquina
-        </div>
-      </div>
+  <script>
+    (function () {
+      const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS0bjnx_Y-i6By1MzKlnA2oEgY6M2iiTJbfaR42kneooYogOgd6grNZrPDnRZ2MSvlqLkgVEx1PhveP/pub?output=csv";
 
-      <!-- Item 4 -->
-      <div class="roadmap-item">
-        <div class="roadmap-header">
-          <h2 class="roadmap-title">4. 17 idiomas</h2>
-          <div class="roadmap-badges">
-            <span class="badge badge-estado badge-lanzado">✅ Lanzado</span>
-            <span class="badge badge-prioridad badge-prioridad-media">🟡 Media</span>
-          </div>
-        </div>
-        <div class="roadmap-meta">
-          <div class="meta-item">
-            <span class="meta-label">Categoría</span>
-            <span class="meta-value">Localización</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Trimestre</span>
-            <span class="meta-value">Q2 2026</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Plataforma</span>
-            <span class="meta-value">Ambas</span>
-          </div>
-        </div>
-        <div class="roadmap-notas">
-          <strong>Notas:</strong> Soporte completo RTL para árabe
-        </div>
-      </div>
+      const grid = document.getElementById("calca-roadmap-grid");
 
-      <!-- Item 5 -->
-      <div class="roadmap-item">
-        <div class="roadmap-header">
-          <h2 class="roadmap-title">5. Modo AR</h2>
-          <div class="roadmap-badges">
-            <span class="badge badge-estado badge-testing">🧪 En testing</span>
-            <span class="badge badge-prioridad badge-prioridad-alta">🔴 Alta</span>
-          </div>
-        </div>
-        <div class="roadmap-meta">
-          <div class="meta-item">
-            <span class="meta-label">Categoría</span>
-            <span class="meta-value">Realidad Aumentada</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Trimestre</span>
-            <span class="meta-value">Q2 2026</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Plataforma</span>
-            <span class="meta-value">Ambas</span>
-          </div>
-        </div>
-        <div class="roadmap-notas">
-          <strong>Notas:</strong> Puede bloquearse si hay muchos errores
-        </div>
-      </div>
+      function escapeHtml(value) {
+        return String(value || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
 
-      <!-- Item 6 -->
-      <div class="roadmap-item">
-        <div class="roadmap-header">
-          <h2 class="roadmap-title">6. Time-Lapse Video</h2>
-          <div class="roadmap-badges">
-            <span class="badge badge-estado badge-roadmap">📋 En roadmap</span>
-            <span class="badge badge-prioridad badge-prioridad-media">🟡 Media</span>
-          </div>
-        </div>
-        <div class="roadmap-meta">
-          <div class="meta-item">
-            <span class="meta-label">Categoría</span>
-            <span class="meta-value">Creatividad</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Trimestre</span>
-            <span class="meta-value">Q2 2026</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Plataforma</span>
-            <span class="meta-value">Ambas</span>
-          </div>
-        </div>
-        <div class="roadmap-notas">
-          <strong>Notas:</strong> Perfecto para TikTok Reels y YouTube
-        </div>
-      </div>
+      function parseCsv(csv) {
+        const rows = [];
+        let row = [];
+        let value = "";
+        let insideQuotes = false;
 
-      <!-- Item 7 -->
-      <div class="roadmap-item">
-        <div class="roadmap-header">
-          <h2 class="roadmap-title">7. IA: Foto a Boceto</h2>
-          <div class="roadmap-badges">
-            <span class="badge badge-estado badge-roadmap">📋 En roadmap</span>
-            <span class="badge badge-prioridad badge-prioridad-alta">🔴 Alta</span>
-          </div>
-        </div>
-        <div class="roadmap-meta">
-          <div class="meta-item">
-            <span class="meta-label">Categoría</span>
-            <span class="meta-value">Inteligencia Artificial</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Trimestre</span>
-            <span class="meta-value">Q3 2026</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Plataforma</span>
-            <span class="meta-value">Ambas</span>
-          </div>
-        </div>
-        <div class="roadmap-notas">
-          <strong>Notas:</strong> Convierte fotos en líneas de contorno para calcar
-        </div>
-      </div>
+        for (let i = 0; i < csv.length; i++) {
+          const char = csv[i];
+          const nextChar = csv[i + 1];
 
-      <!-- Item 8 -->
-      <div class="roadmap-item">
-        <div class="roadmap-header">
-          <h2 class="roadmap-title">8. IA Generativa</h2>
-          <div class="roadmap-badges">
-            <span class="badge badge-estado badge-roadmap">📋 En roadmap</span>
-            <span class="badge badge-prioridad badge-prioridad-media">🟡 Media</span>
-          </div>
-        </div>
-        <div class="roadmap-meta">
-          <div class="meta-item">
-            <span class="meta-label">Categoría</span>
-            <span class="meta-value">Inteligencia Artificial</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Trimestre</span>
-            <span class="meta-value">Q4 2026</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Plataforma</span>
-            <span class="meta-value">Ambas</span>
-          </div>
-        </div>
-        <div class="roadmap-notas">
-          <strong>Notas:</strong> Genera bocetos desde descripción de texto
-        </div>
-      </div>
+          if (char === '"' && insideQuotes && nextChar === '"') {
+            value += '"';
+            i++;
+          } else if (char === '"') {
+            insideQuotes = !insideQuotes;
+          } else if (char === "," && !insideQuotes) {
+            row.push(value);
+            value = "";
+          } else if ((char === "\n" || char === "\r") && !insideQuotes) {
+            if (value || row.length) {
+              row.push(value);
+              rows.push(row);
+              row = [];
+              value = "";
+            }
+            if (char === "\r" && nextChar === "\n") i++;
+          } else {
+            value += char;
+          }
+        }
 
-      <!-- Item 9 -->
-      <div class="roadmap-item">
-        <div class="roadmap-header">
-          <h2 class="roadmap-title">9. Calca Cloud</h2>
-          <div class="roadmap-badges">
-            <span class="badge badge-estado badge-roadmap">📋 En roadmap</span>
-            <span class="badge badge-prioridad badge-prioridad-media">🟡 Media</span>
-          </div>
-        </div>
-        <div class="roadmap-meta">
-          <div class="meta-item">
-            <span class="meta-label">Categoría</span>
-            <span class="meta-value">Sincronización</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Trimestre</span>
-            <span class="meta-value">Q4 2026</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Plataforma</span>
-            <span class="meta-value">Ambas</span>
-          </div>
-        </div>
-        <div class="roadmap-notas">
-          <strong>Notas:</strong> Sincroniza proyectos entre dispositivos
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
-</html>
+        if (value || row.length) {
+          row.push(value);
+          rows.push(row);
+        }
+
+        return rows;
+      }
+
+      function normalizeKey(key) {
+        return key.trim().toLowerCase();
+      }
+
+      function getBadgeClass(value) {
+        const text = String(value || "").toLowerCase();
+
+        if (text.includes("lanzado")) return "badge-lanzado";
+        if (text.includes("testing")) return "badge-testing";
+        if (text.includes("roadmap")) return "badge-roadmap";
+        if (text.includes("alta")) return "badge-alta";
+        if (text.includes("media")) return "badge-media";
+
+        return "";
+      }
+
+      function rowToObject(headers, row) {
+        return headers.reduce(function (item, header, index) {
+          item[normalizeKey(header)] = row[index] ? row[index].trim() : "";
+          return item;
+        }, {});
+      }
+
+      function renderItem(item) {
+        const id = escapeHtml(item.id);
+        const funcionalidad = escapeHtml(item.funcionalidad);
+        const categoria = escapeHtml(item["categoría"] || item.categoria);
+        const estado = escapeHtml(item.estado);
+        const prioridad = escapeHtml(item.prioridad);
+        const trimestre = escapeHtml(item.trimestre);
+        const plataforma = escapeHtml(item.plataforma);
+        const notas = escapeHtml(item.notas);
+
+        return `
+          <article class="roadmap-item">
+            <div class="roadmap-header">
+              <h2 class="roadmap-title">${id}. ${funcionalidad}</h2>
+              <div class="roadmap-badges">
+                <span class="badge ${getBadgeClass(estado)}">${estado}</span>
+                <span class="badge ${getBadgeClass(prioridad)}">${prioridad}</span>
+              </div>
+            </div>
+
+            <div class="roadmap-meta">
+              <div>
+                <span class="meta-label">Categoría</span>
+                <span class="meta-value">${categoria}</span>
+              </div>
+              <div>
+                <span class="meta-label">Trimestre</span>
+                <span class="meta-value">${trimestre}</span>
+              </div>
+              <div>
+                <span class="meta-label">Plataforma</span>
+                <span class="meta-value">${plataforma}</span>
+              </div>
+            </div>
+
+            <p class="roadmap-notas">
+              <strong>Notas:</strong> ${notas}
+            </p>
+          </article>
+        `;
+      }
+
+      fetch(SHEET_CSV_URL)
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error("No se pudo cargar la hoja.");
+          }
+          return response.text();
+        })
+        .then(function (csv) {
+          const rows = parseCsv(csv).filter(function (row) {
+            return row.some(function (cell) {
+              return cell.trim() !== "";
+            });
+          });
+
+          const headers = rows.shift();
+          const items = rows.map(function (row) {
+            return rowToObject(headers, row);
+          });
+
+          grid.innerHTML = items.map(renderItem).join("");
+        })
+        .catch(function () {
+          grid.innerHTML = `
+            <div class="roadmap-error">
+              No se pudo cargar el roadmap desde Google Sheets.
+            </div>
+          `;
+        });
+    })();
+  </script>
+</section>
