@@ -1,11 +1,11 @@
 <section class="calca-roadmap">
   <style>
     .calca-roadmap {
-      --text: #fff;
-      --muted: rgba(255,255,255,.78);
-      --card: rgba(255,255,255,.14);
-      --soft: rgba(255,255,255,.08);
-      --border: rgba(255,255,255,.24);
+      --text: #f8fafc;
+      --muted: rgba(248,250,252,.78);
+      --card: rgba(15,23,42,.34);
+      --soft: rgba(15,23,42,.22);
+      --border: rgba(255,255,255,.18);
 
       max-width: 1200px;
       margin: 0 auto;
@@ -21,8 +21,8 @@
       margin: 0 0 8px;
       text-align: center;
       font-size: clamp(1.8rem, 4vw, 2.6rem);
-      color: #fff;
-      text-shadow: 0 2px 14px rgba(0,0,0,.45);
+      color: var(--text);
+      text-shadow: 0 2px 18px rgba(0,0,0,.55);
     }
 
     .calca-roadmap .intro {
@@ -60,7 +60,7 @@
       margin: 0;
       font-size: 1.15rem;
       font-weight: 700;
-      color: #fff;
+      color: var(--text);
     }
 
     .roadmap-badges {
@@ -77,25 +77,25 @@
       font-size: .75rem;
       font-weight: 700;
       white-space: nowrap;
-      color: #fff;
-      border: 1px solid rgba(255,255,255,.24);
-      background: rgba(255,255,255,.14);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(15,23,42,.28);
     }
 
-    .badge-lanzado { background: rgba(22,163,74,.9); }
-    .badge-testing { background: rgba(217,119,6,.9); }
-    .badge-roadmap { background: rgba(107,114,128,.9); }
+    .badge-lanzado { background: rgba(22,101,52,.82); }
+    .badge-testing { background: rgba(146,64,14,.82); }
+    .badge-roadmap { background: rgba(51,65,85,.82); }
 
     .badge-alta {
-      color: #fecaca;
-      border: 2px solid rgba(248,113,113,.9);
-      background: rgba(239,68,68,.16);
+      color: #fee2e2;
+      border: 2px solid rgba(248,113,113,.5);
+      background: rgba(127,29,29,.34);
     }
 
     .badge-media {
-      color: #fde68a;
-      border: 2px solid rgba(245,158,11,.9);
-      background: rgba(245,158,11,.16);
+      color: #fef3c7;
+      border: 2px solid rgba(245,158,11,.45);
+      background: rgba(120,53,15,.34);
     }
 
     .roadmap-meta {
@@ -105,7 +105,7 @@
       padding: 14px;
       margin-bottom: 12px;
       background: var(--soft);
-      border: 1px solid rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.12);
       border-radius: 14px;
     }
 
@@ -122,7 +122,7 @@
     .meta-value {
       font-size: .92rem;
       font-weight: 600;
-      color: #fff;
+      color: var(--text);
     }
 
     .roadmap-notas {
@@ -138,7 +138,7 @@
     .roadmap-error {
       padding: 16px;
       border-radius: 16px;
-      color: #fff;
+      color: var(--text);
       background: rgba(239,68,68,.22);
       border: 1px solid rgba(248,113,113,.5);
     }
