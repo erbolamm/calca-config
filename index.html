@@ -17,7 +17,6 @@
       --text-secondary: #374151;
       --border-color: rgba(0, 0, 0, 0.1);
     }
-
     @media (prefers-color-scheme: dark) {
       :root {
         --bg-primary: rgba(31, 41, 55, 0.95);
@@ -27,25 +26,21 @@
         --border-color: rgba(255, 255, 255, 0.1);
       }
     }
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       min-height: 100vh;
       padding: 2rem;
     }
-
     .container {
       max-width: 1400px;
       margin: 0 auto;
     }
-
     header {
       text-align: center;
       margin-bottom: 2rem;
@@ -55,23 +50,19 @@
       backdrop-filter: blur(10px);
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
-
     header h1 {
       color: var(--text-primary);
       font-size: 2.5rem;
       margin-bottom: 0.5rem;
     }
-
     header p {
       color: var(--text-secondary);
       font-size: 1.1rem;
     }
-
     .roadmap-grid {
       display: grid;
       gap: 1rem;
     }
-
     .roadmap-item {
       background: var(--bg-primary);
       border-radius: 12px;
@@ -81,12 +72,10 @@
       border: 1px solid var(--border-color);
       transition: transform 0.2s, box-shadow 0.2s;
     }
-
     .roadmap-item:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
     }
-
     .roadmap-header {
       display: flex;
       justify-content: space-between;
@@ -95,20 +84,17 @@
       flex-wrap: wrap;
       gap: 0.5rem;
     }
-
     .roadmap-title {
       font-size: 1.25rem;
       font-weight: 600;
       color: var(--text-primary);
       flex: 1;
     }
-
     .roadmap-badges {
       display: flex;
       gap: 0.5rem;
       flex-wrap: wrap;
     }
-
     .badge {
       padding: 0.25rem 0.75rem;
       border-radius: 9999px;
@@ -117,30 +103,24 @@
       text-transform: uppercase;
       letter-spacing: 0.025em;
     }
-
     .badge-estado {
       color: white;
     }
-
     .badge-lanzado { background: var(--color-lanzado); }
     .badge-testing { background: var(--color-testing); }
     .badge-roadmap { background: var(--color-roadmap); }
-
     .badge-prioridad {
       background: transparent;
       border: 2px solid;
     }
-
     .badge-prioridad-alta {
       color: var(--prioridad-alta);
       border-color: var(--prioridad-alta);
     }
-
     .badge-prioridad-media {
       color: var(--prioridad-media);
       border-color: var(--prioridad-media);
     }
-
     .roadmap-meta {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -150,12 +130,10 @@
       background: var(--bg-secondary);
       border-radius: 8px;
     }
-
     .meta-item {
       display: flex;
       flex-direction: column;
     }
-
     .meta-label {
       font-size: 0.75rem;
       color: var(--text-secondary);
@@ -163,13 +141,11 @@
       letter-spacing: 0.05em;
       margin-bottom: 0.25rem;
     }
-
     .meta-value {
       font-size: 0.875rem;
       font-weight: 500;
       color: var(--text-primary);
     }
-
     .roadmap-notas {
       font-size: 0.875rem;
       color: var(--text-secondary);
@@ -177,25 +153,20 @@
       border-top: 1px solid var(--border-color);
       line-height: 1.5;
     }
-
     .roadmap-notas strong {
       color: var(--text-primary);
     }
-
     @media (max-width: 640px) {
       body {
         padding: 1rem;
       }
-
       header h1 {
         font-size: 1.75rem;
       }
-
       .roadmap-header {
         flex-direction: column;
         gap: 0.75rem;
       }
-
       .roadmap-meta {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -208,7 +179,6 @@
       <h1>🗺️ CalcaApp Roadmap</h1>
       <p>Seguimiento de funcionalidades y mejoras planificadas</p>
     </header>
-
     <div class="roadmap-grid">
       <!-- Item 1 -->
       <div class="roadmap-item">
@@ -237,7 +207,6 @@
           <strong>Notas:</strong> Proyección en milisegundos con reconexión automática
         </div>
       </div>
-
       <!-- Item 2 -->
       <div class="roadmap-item">
         <div class="roadmap-header">
@@ -265,7 +234,6 @@
           <strong>Notas:</strong> 10 min de arte = puntos canjeables por días premium
         </div>
       </div>
-
       <!-- Item 3 -->
       <div class="roadmap-item">
         <div class="roadmap-header">
@@ -293,7 +261,6 @@
           <strong>Notas:</strong> Logo CalcaApp y calcaapp.com en la esquina
         </div>
       </div>
-
       <!-- Item 4 -->
       <div class="roadmap-item">
         <div class="roadmap-header">
@@ -321,7 +288,6 @@
           <strong>Notas:</strong> Soporte completo RTL para árabe
         </div>
       </div>
-
       <!-- Item 5 -->
       <div class="roadmap-item">
         <div class="roadmap-header">
@@ -349,7 +315,6 @@
           <strong>Notas:</strong> Puede bloquearse si hay muchos errores
         </div>
       </div>
-
       <!-- Item 6 -->
       <div class="roadmap-item">
         <div class="roadmap-header">
@@ -377,7 +342,6 @@
           <strong>Notas:</strong> Perfecto para TikTok Reels y YouTube
         </div>
       </div>
-
       <!-- Item 7 -->
       <div class="roadmap-item">
         <div class="roadmap-header">
@@ -405,7 +369,6 @@
           <strong>Notas:</strong> Convierte fotos en líneas de contorno para calcar
         </div>
       </div>
-
       <!-- Item 8 -->
       <div class="roadmap-item">
         <div class="roadmap-header">
@@ -433,7 +396,6 @@
           <strong>Notas:</strong> Genera bocetos desde descripción de texto
         </div>
       </div>
-
       <!-- Item 9 -->
       <div class="roadmap-item">
         <div class="roadmap-header">
