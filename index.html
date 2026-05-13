@@ -1,156 +1,71 @@
 <section class="calca-roadmap">
   <style>
     .calca-roadmap {
-      --green: #16a34a;
-      --orange: #d97706;
-      --gray: #4b5563;
-      --red: #dc2626;
-      --text: #111827;
-      --muted: #4b5563;
-      --card: #ffffff;
-      --soft: #f3f4f6;
-      --border: rgba(0, 0, 0, 0.12);
+  --green: #16a34a;
+  --orange: #d97706;
+  --gray: #6b7280;
+  --red: #ef4444;
+  --text: #ffffff;
+  --muted: rgba(255, 255, 255, 0.78);
+  --card: rgba(255, 255, 255, 0.16);
+  --soft: rgba(255, 255, 255, 0.10);
+  --border: rgba(255, 255, 255, 0.28);
 
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 24px;
-      border-radius: 18px;
-      background: #f9fafb;
-    }
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  background: transparent;
+}
 
-    @media (prefers-color-scheme: dark) {
-      .calca-roadmap {
-        --text: #f9fafb;
-        --muted: #d1d5db;
-        --card: #111827;
-        --soft: #1f2937;
-        --border: rgba(255, 255, 255, 0.16);
+.roadmap-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 18px;
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
 
-        background: #030712;
-      }
-    }
+.roadmap-meta {
+  background: var(--soft);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+}
 
-    .calca-roadmap * {
-      box-sizing: border-box;
-    }
+.roadmap-title,
+.meta-value,
+.roadmap-notas strong {
+  color: #ffffff;
+}
 
-    .calca-roadmap h1 {
-      margin: 0 0 8px;
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      text-align: center;
-    }
+.intro,
+.meta-label,
+.roadmap-notas {
+  color: var(--muted);
+}
 
-    .calca-roadmap .intro {
-      margin: 0 0 24px;
-      color: var(--muted);
-      text-align: center;
-      font-size: 1rem;
-    }
+.badge-lanzado,
+.badge-testing,
+.badge-roadmap {
+  color: #ffffff;
+}
 
-    .roadmap-grid {
-      display: grid;
-      gap: 16px;
-    }
+.badge-alta {
+  color: #fecaca;
+  border-color: rgba(248, 113, 113, 0.9);
+  background: rgba(239, 68, 68, 0.16);
+}
 
-    .roadmap-item {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 18px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    }
-
-    .roadmap-header {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 14px;
-    }
-
-    .roadmap-title {
-      margin: 0;
-      font-size: 1.15rem;
-      color: var(--text);
-    }
-
-    .roadmap-badges {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 5px 10px;
-      border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    .badge-lanzado,
-    .badge-testing,
-    .badge-roadmap {
-      color: #ffffff;
-    }
-
-    .badge-lanzado { background: var(--green); }
-    .badge-testing { background: var(--orange); }
-    .badge-roadmap { background: var(--gray); }
-
-    .badge-alta {
-      color: var(--red);
-      border: 2px solid var(--red);
-      background: transparent;
-    }
-
-    .badge-media {
-      color: var(--orange);
-      border: 2px solid var(--orange);
-      background: transparent;
-    }
-
-    .roadmap-meta {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 10px;
-      padding: 14px;
-      background: var(--soft);
-      border-radius: 12px;
-      margin-bottom: 12px;
-    }
-
-    .meta-label {
-      display: block;
-      margin-bottom: 4px;
-      color: var(--muted);
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .meta-value {
-      color: var(--text);
-      font-weight: 600;
-      font-size: 0.92rem;
-    }
-
-    .roadmap-notas {
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-      padding-top: 12px;
-      line-height: 1.5;
-      font-size: 0.92rem;
-    }
-
-    .roadmap-notas strong {
-      color: var(--text);
-    }
+.badge-media {
+  color: #fde68a;
+  border-color: rgba(245, 158, 11, 0.9);
+  background: rgba(245, 158, 11, 0.16);
+}
   </style>
 
   <h1>🗺️ CalcaApp Roadmap</h1>
