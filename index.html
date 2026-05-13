@@ -1,785 +1,304 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="color-scheme" content="light dark" />
-  <title>CalcaApp — Roadmap</title>
+<section class="calca-roadmap">
   <style>
-    /* ─────────────────────────────────────────────────────────────────────
-       CSS VARIABLES: Theme-aware color tokens that auto-adapt to parent background
-       ───────────────────────────────────────────────────────────────────── */
-    :root {
-      /* Status badge colors */
-      --color-lanzado: #10b981;
-      --color-testing: #f97316;
-      --color-roadmap: #8b5cf6;
-      
-      /* Priority colors */
-      --prioridad-alta: #dc2626;
-      --prioridad-media: #ea580c;
-      
-      /* Light mode (detected parent background is light or user prefers light) */
-      --card-bg: rgba(255, 255, 255, 0.88);
-      --card-bg-secondary: rgba(243, 244, 246, 0.85);
-      --card-border: rgba(0, 0, 0, 0.08);
-      --card-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
-      
-      --text-primary: #0f172a;
-      --text-secondary: #475569;
-      --text-tertiary: #64748b;
-      
-      --badge-text: #ffffff;
+    .calca-roadmap {
+      --green: #16a34a;
+      --orange: #d97706;
+      --gray: #4b5563;
+      --red: #dc2626;
+      --text: #111827;
+      --muted: #4b5563;
+      --card: #ffffff;
+      --soft: #f3f4f6;
+      --border: rgba(0, 0, 0, 0.12);
+
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px;
+      border-radius: 18px;
+      background: #f9fafb;
     }
 
-    /* Dark mode: inverted colors for readability on dark parent backgrounds */
     @media (prefers-color-scheme: dark) {
-      :root {
-        --card-bg: rgba(15, 23, 42, 0.88);
-        --card-bg-secondary: rgba(30, 41, 59, 0.85);
-        --card-border: rgba(255, 255, 255, 0.08);
-        --card-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
-        
-        --text-primary: #f1f5f9;
-        --text-secondary: #cbd5e1;
-        --text-tertiary: #94a3b8;
-        
-        --badge-text: #ffffff;
+      .calca-roadmap {
+        --text: #f9fafb;
+        --muted: #d1d5db;
+        --card: #111827;
+        --soft: #1f2937;
+        --border: rgba(255, 255, 255, 0.16);
+
+        background: #030712;
       }
     }
 
-    /* ─────────────────────────────────────────────────────────────────────
-       THEME DETECTION: JavaScript will set data-theme="light" or "dark"
-       on the root container after inspecting parent background brightness
-       ───────────────────────────────────────────────────────────────────── */
-    .roadmap-root[data-theme="light"] {
-      --card-bg: rgba(255, 255, 255, 0.92);
-      --card-bg-secondary: rgba(248, 250, 252, 0.90);
-      --card-border: rgba(2, 8, 23, 0.06);
-      --card-shadow: 0 14px 35px rgba(2, 8, 23, 0.09);
-      
-      --text-primary: #020817;
-      --text-secondary: #334155;
-      --text-tertiary: #64748b;
-    }
-
-    .roadmap-root[data-theme="dark"] {
-      --card-bg: rgba(6, 11, 20, 0.92);
-      --card-bg-secondary: rgba(15, 23, 42, 0.88);
-      --card-border: rgba(255, 255, 255, 0.06);
-      --card-shadow: 0 14px 35px rgba(0, 0, 0, 0.5);
-      
-      --text-primary: #f8fafc;
-      --text-secondary: #cbd5e1;
-      --text-tertiary: #94a3b8;
-    }
-
-    /* ─────────────────────────────────────────────────────────────────────
-       BASE RESET & LAYOUT
-       ───────────────────────────────────────────────────────────────────── */
-    * {
-      margin: 0;
-      padding: 0;
+    .calca-roadmap * {
       box-sizing: border-box;
     }
 
-    html, body {
-      height: 100%;
-      margin: 0;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      padding: 2rem 1rem;
-    }
-
-    .roadmap-root {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    /* ─────────────────────────────────────────────────────────────────────
-       HEADER
-       ───────────────────────────────────────────────────────────────────── */
-    .roadmap-header {
-      padding: 2rem;
-      margin-bottom: 2.5rem;
-      border-radius: 16px;
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--card-border);
-      box-shadow: var(--card-shadow);
+    .calca-roadmap h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
       text-align: center;
     }
 
-    .roadmap-header h1 {
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.02em;
-    }
-
-    .roadmap-header p {
+    .calca-roadmap .intro {
+      margin: 0 0 24px;
+      color: var(--muted);
+      text-align: center;
       font-size: 1rem;
-      color: var(--text-secondary);
-      font-weight: 500;
-      margin: 0;
     }
 
-    /* ─────────────────────────────────────────────────────────────────────
-       ROADMAP GRID
-       ───────────────────────────────────────────────────────────────────── */
     .roadmap-grid {
       display: grid;
-      gap: 1.5rem;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
     }
 
-    /* ─────────────────────────────────────────────────────────────────────
-       ROADMAP ITEM: Core card with two-layer surface for guaranteed contrast
-       ───────────────────────────────────────────────────────────────────── */
     .roadmap-item {
-      position: relative;
-      border-radius: 14px;
-      overflow: hidden;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     }
 
-    /* Base surface layer: opaque backing ensures text readability
-       regardless of parent background */
-    .roadmap-item::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--card-bg);
-      border-radius: inherit;
-      box-shadow: var(--card-shadow);
-      border: 1px solid var(--card-border);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* Content layer sits above the surface */
-    .roadmap-item-content {
-      position: relative;
-      z-index: 2;
-      padding: 1.75rem;
-      border-radius: 14px;
-    }
-
-    .roadmap-item:hover {
-      transform: translateY(-4px);
-    }
-
-    .roadmap-item:hover::before {
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
-    }
-
-    /* ─────────────────────────────────────────────────────────────────────
-       ROADMAP ITEM HEADER
-       ───────────────────────────────────────────────────────────────────── */
-    .roadmap-header-row {
+    .roadmap-header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      gap: 1rem;
-      margin-bottom: 1.25rem;
+      gap: 12px;
       flex-wrap: wrap;
+      margin-bottom: 14px;
     }
 
     .roadmap-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      flex: 1;
-      min-width: 200px;
-      line-height: 1.4;
+      margin: 0;
+      font-size: 1.15rem;
+      color: var(--text);
     }
 
-    /* ─────────────────────────────────────────────────────────────────────
-       BADGES
-       ───────────────────────────────────────────────────────────────────── */
-    .badges-container {
+    .roadmap-badges {
       display: flex;
-      gap: 0.75rem;
+      gap: 8px;
       flex-wrap: wrap;
-      align-items: center;
     }
 
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 0.5rem 1rem;
-      border-radius: 9999px;
-      font-size: 0.8rem;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
       font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
       white-space: nowrap;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      color: var(--badge-text);
     }
 
-    /* Status badges: solid colors */
-    .badge-lanzado {
-      background: linear-gradient(135deg, var(--color-lanzado) 0%, #059669 100%);
-      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
-    }
-
-    .badge-testing {
-      background: linear-gradient(135deg, var(--color-testing) 0%, #ea580c 100%);
-      box-shadow: 0 4px 14px rgba(249, 115, 22, 0.35);
-    }
-
+    .badge-lanzado,
+    .badge-testing,
     .badge-roadmap {
-      background: linear-gradient(135deg, var(--color-roadmap) 0%, #7c3aed 100%);
-      box-shadow: 0 4px 14px rgba(139, 92, 246, 0.35);
+      color: #ffffff;
     }
 
-    /* Priority badges: outlined style */
-    .badge-prioridad {
+    .badge-lanzado { background: var(--green); }
+    .badge-testing { background: var(--orange); }
+    .badge-roadmap { background: var(--gray); }
+
+    .badge-alta {
+      color: var(--red);
+      border: 2px solid var(--red);
       background: transparent;
-      border: 2px solid;
-      color: var(--text-primary);
-      font-weight: 700;
-      box-shadow: none;
     }
 
-    .badge-prioridad-alta {
-      border-color: var(--prioridad-alta);
-      color: var(--prioridad-alta);
+    .badge-media {
+      color: var(--orange);
+      border: 2px solid var(--orange);
+      background: transparent;
     }
 
-    .badge-prioridad-media {
-      border-color: var(--prioridad-media);
-      color: var(--prioridad-media);
-    }
-
-    /* ─────────────────────────────────────────────────────────────────────
-       METADATA SECTION
-       ───────────────────────────────────────────────────────────────────── */
     .roadmap-meta {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 1rem;
-      padding: 1.25rem;
-      margin-bottom: 1.25rem;
-      background: var(--card-bg-secondary);
-      border-radius: 10px;
-      border: 1px solid var(--card-border);
-    }
-
-    .meta-item {
-      display: flex;
-      flex-direction: column;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+      padding: 14px;
+      background: var(--soft);
+      border-radius: 12px;
+      margin-bottom: 12px;
     }
 
     .meta-label {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-tertiary);
-      margin-bottom: 0.4rem;
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: 0.72rem;
       font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     .meta-value {
-      font-size: 0.95rem;
+      color: var(--text);
       font-weight: 600;
-      color: var(--text-primary);
+      font-size: 0.92rem;
     }
 
-    /* ─────────────────────────────────────────────────────────────────────
-       NOTES SECTION
-       ───────────────────────────────────────────────────────────────────── */
-    .roadmap-notes {
-      padding-top: 1rem;
-      border-top: 1px solid var(--card-border);
-      font-size: 0.9rem;
-      line-height: 1.6;
-      color: var(--text-secondary);
+    .roadmap-notas {
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+      line-height: 1.5;
+      font-size: 0.92rem;
     }
 
-    .roadmap-notes strong {
-      color: var(--text-primary);
-      font-weight: 700;
-      display: block;
-      margin-bottom: 0.3rem;
-    }
-
-    /* ─────────────────────────────────────────────────────────────────────
-       ACCESSIBILITY & RESPONSIVE
-       ───────────────────────────────────────────────────────────────────── */
-    @media (prefers-reduced-motion: reduce) {
-      .roadmap-item {
-        transition: none;
-      }
-      .roadmap-item:hover {
-        transform: none;
-      }
-    }
-
-    @media (max-width: 768px) {
-      body {
-        padding: 1.5rem 1rem;
-      }
-
-      .roadmap-header {
-        padding: 1.5rem;
-        margin-bottom: 2rem;
-      }
-
-      .roadmap-header h1 {
-        font-size: 1.75rem;
-      }
-
-      .roadmap-item-content {
-        padding: 1.25rem;
-      }
-
-      .roadmap-meta {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.75rem;
-        padding: 1rem;
-      }
-
-      .roadmap-header-row {
-        flex-direction: column;
-        gap: 0.75rem;
-      }
-
-      .badges-container {
-        justify-content: flex-start;
-        width: 100%;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .roadmap-header h1 {
-        font-size: 1.5rem;
-      }
-
-      .roadmap-title {
-        font-size: 1.1rem;
-      }
-
-      .roadmap-meta {
-        grid-template-columns: 1fr;
-      }
-
-      .badge {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.75rem;
-      }
+    .roadmap-notas strong {
+      color: var(--text);
     }
   </style>
-</head>
-<body>
 
-  <div class="roadmap-root" id="calca-roadmap" role="main" aria-label="CalcaApp Roadmap">
-    <!-- HEADER -->
-    <div class="roadmap-header" role="banner">
-      <h1>🗺️ CalcaApp Roadmap</h1>
-      <p>Seguimiento de funcionalidades y mejoras planificadas</p>
-    </div>
+  <h1>🗺️ CalcaApp Roadmap</h1>
+  <p class="intro">Seguimiento de funcionalidades y mejoras planificadas</p>
 
-    <!-- ROADMAP GRID -->
-    <div class="roadmap-grid" role="list">
-
-      <!-- ITEM 1 -->
-      <article class="roadmap-item" role="listitem" aria-labelledby="item-1-title">
-        <div class="roadmap-item-content">
-          <div class="roadmap-header-row">
-            <h2 class="roadmap-title" id="item-1-title">1. Conectar dispositivos</h2>
-            <div class="badges-container">
-              <span class="badge badge-lanzado">✅ Lanzado</span>
-              <span class="badge badge-prioridad badge-prioridad-alta">🔴 Alta</span>
-            </div>
-          </div>
-          <div class="roadmap-meta">
-            <div class="meta-item">
-              <span class="meta-label">Categoría</span>
-              <span class="meta-value">Conectividad</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Trimestre</span>
-              <span class="meta-value">Q3 2025</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Plataforma</span>
-              <span class="meta-value">Ambas</span>
-            </div>
-          </div>
-          <div class="roadmap-notes">
-            <strong>Notas:</strong> Proyección en milisegundos con reconexión automática
-          </div>
+  <div class="roadmap-grid">
+    <article class="roadmap-item">
+      <div class="roadmap-header">
+        <h2 class="roadmap-title">1. Conectar dispositivos / Connecting devices</h2>
+        <div class="roadmap-badges">
+          <span class="badge badge-lanzado">✅ Lanzado</span>
+          <span class="badge badge-alta">🔴 Alta</span>
         </div>
-      </article>
+      </div>
+      <div class="roadmap-meta">
+        <div><span class="meta-label">Categoría</span><span class="meta-value">Conectividad</span></div>
+        <div><span class="meta-label">Trimestre</span><span class="meta-value">Q3 2025</span></div>
+        <div><span class="meta-label">Plataforma</span><span class="meta-value">Ambas</span></div>
+      </div>
+      <p class="roadmap-notas"><strong>Notas:</strong> Proyección en milisegundos con reconexión automática</p>
+    </article>
 
-      <!-- ITEM 2 -->
-      <article class="roadmap-item" role="listitem" aria-labelledby="item-2-title">
-        <div class="roadmap-item-content">
-          <div class="roadmap-header-row">
-            <h2 class="roadmap-title" id="item-2-title">2. Sistema de puntos PRO</h2>
-            <div class="badges-container">
-              <span class="badge badge-lanzado">✅ Lanzado</span>
-              <span class="badge badge-prioridad badge-prioridad-alta">🔴 Alta</span>
-            </div>
-          </div>
-          <div class="roadmap-meta">
-            <div class="meta-item">
-              <span class="meta-label">Categoría</span>
-              <span class="meta-value">Monetización</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Trimestre</span>
-              <span class="meta-value">Q4 2025</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Plataforma</span>
-              <span class="meta-value">Ambas</span>
-            </div>
-          </div>
-          <div class="roadmap-notes">
-            <strong>Notas:</strong> 10 min de arte = puntos canjeables por días premium
-          </div>
+    <article class="roadmap-item">
+      <div class="roadmap-header">
+        <h2 class="roadmap-title">2. Sistema de puntos PRO</h2>
+        <div class="roadmap-badges">
+          <span class="badge badge-lanzado">✅ Lanzado</span>
+          <span class="badge badge-alta">🔴 Alta</span>
         </div>
-      </article>
+      </div>
+      <div class="roadmap-meta">
+        <div><span class="meta-label">Categoría</span><span class="meta-value">Monetización</span></div>
+        <div><span class="meta-label">Trimestre</span><span class="meta-value">Q4 2025</span></div>
+        <div><span class="meta-label">Plataforma</span><span class="meta-value">Ambas</span></div>
+      </div>
+      <p class="roadmap-notas"><strong>Notas:</strong> 10 min de arte = puntos canjeables por días premium</p>
+    </article>
 
-      <!-- ITEM 3 -->
-      <article class="roadmap-item" role="listitem" aria-labelledby="item-3-title">
-        <div class="roadmap-item-content">
-          <div class="roadmap-header-row">
-            <h2 class="roadmap-title" id="item-3-title">3. Captura con marca de agua</h2>
-            <div class="badges-container">
-              <span class="badge badge-lanzado">✅ Lanzado</span>
-              <span class="badge badge-prioridad badge-prioridad-media">🟡 Media</span>
-            </div>
-          </div>
-          <div class="roadmap-meta">
-            <div class="meta-item">
-              <span class="meta-label">Categoría</span>
-              <span class="meta-value">Compartir</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Trimestre</span>
-              <span class="meta-value">Q1 2026</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Plataforma</span>
-              <span class="meta-value">Ambas</span>
-            </div>
-          </div>
-          <div class="roadmap-notes">
-            <strong>Notas:</strong> Logo CalcaApp y calcaapp.com en la esquina
-          </div>
+    <article class="roadmap-item">
+      <div class="roadmap-header">
+        <h2 class="roadmap-title">3. Captura con marca de agua</h2>
+        <div class="roadmap-badges">
+          <span class="badge badge-lanzado">✅ Lanzado</span>
+          <span class="badge badge-media">🟡 Media</span>
         </div>
-      </article>
+      </div>
+      <div class="roadmap-meta">
+        <div><span class="meta-label">Categoría</span><span class="meta-value">Compartir</span></div>
+        <div><span class="meta-label">Trimestre</span><span class="meta-value">Q1 2026</span></div>
+        <div><span class="meta-label">Plataforma</span><span class="meta-value">Ambas</span></div>
+      </div>
+      <p class="roadmap-notas"><strong>Notas:</strong> Logo CalcaApp y calcaapp.com en la esquina</p>
+    </article>
 
-      <!-- ITEM 4 -->
-      <article class="roadmap-item" role="listitem" aria-labelledby="item-4-title">
-        <div class="roadmap-item-content">
-          <div class="roadmap-header-row">
-            <h2 class="roadmap-title" id="item-4-title">4. 17 idiomas</h2>
-            <div class="badges-container">
-              <span class="badge badge-lanzado">✅ Lanzado</span>
-              <span class="badge badge-prioridad badge-prioridad-media">🟡 Media</span>
-            </div>
-          </div>
-          <div class="roadmap-meta">
-            <div class="meta-item">
-              <span class="meta-label">Categoría</span>
-              <span class="meta-value">Localización</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Trimestre</span>
-              <span class="meta-value">Q2 2026</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Plataforma</span>
-              <span class="meta-value">Ambas</span>
-            </div>
-          </div>
-          <div class="roadmap-notes">
-            <strong>Notas:</strong> Soporte completo RTL para árabe
-          </div>
+    <article class="roadmap-item">
+      <div class="roadmap-header">
+        <h2 class="roadmap-title">4. 17 idiomas</h2>
+        <div class="roadmap-badges">
+          <span class="badge badge-lanzado">✅ Lanzado</span>
+          <span class="badge badge-media">🟡 Media</span>
         </div>
-      </article>
+      </div>
+      <div class="roadmap-meta">
+        <div><span class="meta-label">Categoría</span><span class="meta-value">Localización</span></div>
+        <div><span class="meta-label">Trimestre</span><span class="meta-value">Q2 2026</span></div>
+        <div><span class="meta-label">Plataforma</span><span class="meta-value">Ambas</span></div>
+      </div>
+      <p class="roadmap-notas"><strong>Notas:</strong> Soporte completo RTL para árabe</p>
+    </article>
 
-      <!-- ITEM 5 -->
-      <article class="roadmap-item" role="listitem" aria-labelledby="item-5-title">
-        <div class="roadmap-item-content">
-          <div class="roadmap-header-row">
-            <h2 class="roadmap-title" id="item-5-title">5. Modo AR</h2>
-            <div class="badges-container">
-              <span class="badge badge-testing">🧪 En testing</span>
-              <span class="badge badge-prioridad badge-prioridad-alta">🔴 Alta</span>
-            </div>
-          </div>
-          <div class="roadmap-meta">
-            <div class="meta-item">
-              <span class="meta-label">Categoría</span>
-              <span class="meta-value">Realidad Aumentada</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Trimestre</span>
-              <span class="meta-value">Q2 2026</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Plataforma</span>
-              <span class="meta-value">Ambas</span>
-            </div>
-          </div>
-          <div class="roadmap-notes">
-            <strong>Notas:</strong> Puede bloquearse si hay muchos errores
-          </div>
+    <article class="roadmap-item">
+      <div class="roadmap-header">
+        <h2 class="roadmap-title">5. Modo AR</h2>
+        <div class="roadmap-badges">
+          <span class="badge badge-testing">🧪 En testing</span>
+          <span class="badge badge-alta">🔴 Alta</span>
         </div>
-      </article>
+      </div>
+      <div class="roadmap-meta">
+        <div><span class="meta-label">Categoría</span><span class="meta-value">Realidad Aumentada</span></div>
+        <div><span class="meta-label">Trimestre</span><span class="meta-value">Q2 2026</span></div>
+        <div><span class="meta-label">Plataforma</span><span class="meta-value">Ambas</span></div>
+      </div>
+      <p class="roadmap-notas"><strong>Notas:</strong> Puede bloquearse si hay muchos errores</p>
+    </article>
 
-      <!-- ITEM 6 -->
-      <article class="roadmap-item" role="listitem" aria-labelledby="item-6-title">
-        <div class="roadmap-item-content">
-          <div class="roadmap-header-row">
-            <h2 class="roadmap-title" id="item-6-title">6. Time-Lapse Video</h2>
-            <div class="badges-container">
-              <span class="badge badge-roadmap">📋 En roadmap</span>
-              <span class="badge badge-prioridad badge-prioridad-media">🟡 Media</span>
-            </div>
-          </div>
-          <div class="roadmap-meta">
-            <div class="meta-item">
-              <span class="meta-label">Categoría</span>
-              <span class="meta-value">Creatividad</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Trimestre</span>
-              <span class="meta-value">Q2 2026</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Plataforma</span>
-              <span class="meta-value">Ambas</span>
-            </div>
-          </div>
-          <div class="roadmap-notes">
-            <strong>Notas:</strong> Perfecto para TikTok Reels y YouTube
-          </div>
+    <article class="roadmap-item">
+      <div class="roadmap-header">
+        <h2 class="roadmap-title">6. Time-Lapse Video</h2>
+        <div class="roadmap-badges">
+          <span class="badge badge-roadmap">📋 En roadmap</span>
+          <span class="badge badge-media">🟡 Media</span>
         </div>
-      </article>
+      </div>
+      <div class="roadmap-meta">
+        <div><span class="meta-label">Categoría</span><span class="meta-value">Creatividad</span></div>
+        <div><span class="meta-label">Trimestre</span><span class="meta-value">Q2 2026</span></div>
+        <div><span class="meta-label">Plataforma</span><span class="meta-value">Ambas</span></div>
+      </div>
+      <p class="roadmap-notas"><strong>Notas:</strong> Perfecto para TikTok Reels y YouTube</p>
+    </article>
 
-      <!-- ITEM 7 -->
-      <article class="roadmap-item" role="listitem" aria-labelledby="item-7-title">
-        <div class="roadmap-item-content">
-          <div class="roadmap-header-row">
-            <h2 class="roadmap-title" id="item-7-title">7. IA: Foto a Boceto</h2>
-            <div class="badges-container">
-              <span class="badge badge-roadmap">📋 En roadmap</span>
-              <span class="badge badge-prioridad badge-prioridad-alta">🔴 Alta</span>
-            </div>
-          </div>
-          <div class="roadmap-meta">
-            <div class="meta-item">
-              <span class="meta-label">Categoría</span>
-              <span class="meta-value">Inteligencia Artificial</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Trimestre</span>
-              <span class="meta-value">Q3 2026</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Plataforma</span>
-              <span class="meta-value">Ambas</span>
-            </div>
-          </div>
-          <div class="roadmap-notes">
-            <strong>Notas:</strong> Convierte fotos en líneas de contorno para calcar
-          </div>
+    <article class="roadmap-item">
+      <div class="roadmap-header">
+        <h2 class="roadmap-title">7. IA: Foto a Boceto</h2>
+        <div class="roadmap-badges">
+          <span class="badge badge-roadmap">📋 En roadmap</span>
+          <span class="badge badge-alta">🔴 Alta</span>
         </div>
-      </article>
+      </div>
+      <div class="roadmap-meta">
+        <div><span class="meta-label">Categoría</span><span class="meta-value">Inteligencia Artificial</span></div>
+        <div><span class="meta-label">Trimestre</span><span class="meta-value">Q3 2026</span></div>
+        <div><span class="meta-label">Plataforma</span><span class="meta-value">Ambas</span></div>
+      </div>
+      <p class="roadmap-notas"><strong>Notas:</strong> Convierte fotos en líneas de contorno para calcar</p>
+    </article>
 
-      <!-- ITEM 8 -->
-      <article class="roadmap-item" role="listitem" aria-labelledby="item-8-title">
-        <div class="roadmap-item-content">
-          <div class="roadmap-header-row">
-            <h2 class="roadmap-title" id="item-8-title">8. IA Generativa</h2>
-            <div class="badges-container">
-              <span class="badge badge-roadmap">📋 En roadmap</span>
-              <span class="badge badge-prioridad badge-prioridad-media">🟡 Media</span>
-            </div>
-          </div>
-          <div class="roadmap-meta">
-            <div class="meta-item">
-              <span class="meta-label">Categoría</span>
-              <span class="meta-value">Inteligencia Artificial</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Trimestre</span>
-              <span class="meta-value">Q4 2026</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Plataforma</span>
-              <span class="meta-value">Ambas</span>
-            </div>
-          </div>
-          <div class="roadmap-notes">
-            <strong>Notas:</strong> Genera bocetos desde descripción de texto
-          </div>
+    <article class="roadmap-item">
+      <div class="roadmap-header">
+        <h2 class="roadmap-title">8. IA Generativa</h2>
+        <div class="roadmap-badges">
+          <span class="badge badge-roadmap">📋 En roadmap</span>
+          <span class="badge badge-media">🟡 Media</span>
         </div>
-      </article>
+      </div>
+      <div class="roadmap-meta">
+        <div><span class="meta-label">Categoría</span><span class="meta-value">Inteligencia Artificial</span></div>
+        <div><span class="meta-label">Trimestre</span><span class="meta-value">Q4 2026</span></div>
+        <div><span class="meta-label">Plataforma</span><span class="meta-value">Ambas</span></div>
+      </div>
+      <p class="roadmap-notas"><strong>Notas:</strong> Genera bocetos desde descripción de texto</p>
+    </article>
 
-      <!-- ITEM 9 -->
-      <article class="roadmap-item" role="listitem" aria-labelledby="item-9-title">
-        <div class="roadmap-item-content">
-          <div class="roadmap-header-row">
-            <h2 class="roadmap-title" id="item-9-title">9. Calca Cloud</h2>
-            <div class="badges-container">
-              <span class="badge badge-roadmap">📋 En roadmap</span>
-              <span class="badge badge-prioridad badge-prioridad-media">🟡 Media</span>
-            </div>
-          </div>
-          <div class="roadmap-meta">
-            <div class="meta-item">
-              <span class="meta-label">Categoría</span>
-              <span class="meta-value">Sincronización</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Trimestre</span>
-              <span class="meta-value">Q4 2026</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Plataforma</span>
-              <span class="meta-value">Ambas</span>
-            </div>
-          </div>
-          <div class="roadmap-notes">
-            <strong>Notas:</strong> Sincroniza proyectos entre dispositivos
-          </div>
+    <article class="roadmap-item">
+      <div class="roadmap-header">
+        <h2 class="roadmap-title">9. Calca Cloud</h2>
+        <div class="roadmap-badges">
+          <span class="badge badge-roadmap">📋 En roadmap</span>
+          <span class="badge badge-media">🟡 Media</span>
         </div>
-      </article>
-
-    </div>
+      </div>
+      <div class="roadmap-meta">
+        <div><span class="meta-label">Categoría</span><span class="meta-value">Sincronización</span></div>
+        <div><span class="meta-label">Trimestre</span><span class="meta-value">Q4 2026</span></div>
+        <div><span class="meta-label">Plataforma</span><span class="meta-value">Ambas</span></div>
+      </div>
+      <p class="roadmap-notas"><strong>Notas:</strong> Sincroniza proyectos entre dispositivos</p>
+    </article>
   </div>
-
-  <!-- ───────────────────────────────────────────────────────────────────
-       BACKGROUND DETECTION SCRIPT
-       Inspects the parent page's computed background color and automatically
-       sets the roadmap theme to "light" or "dark" for optimal contrast.
-       ─────────────────────────────────────────────────────────────────── -->
-  <script>
-    (function() {
-      /**
-       * Calculate relative luminance of RGB color (0..1)
-       * Used to determine if a background is light or dark
-       */
-      function getRelativeLuminance(r, g, b) {
-        var srgb = [r, g, b].map(function(v) {
-          v = v / 255;
-          return (v <= 0.03928) ? (v / 12.92) : Math.pow((v + 0.055) / 1.055, 2.4);
-        });
-        return 0.2126 * srgb[0] + 0.7152 * srgb[1] + 0.0722 * srgb[2];
-      }
-
-      /**
-       * Parse CSS color value (rgb, rgba, hex) into {r, g, b, a}
-       */
-      function parseColor(cssColor) {
-        if (!cssColor) return null;
-        cssColor = cssColor.trim();
-        
-        // Match rgb/rgba
-        var rgbMatch = cssColor.match(/^rgba?\((\s*\d+),\s*(\d+),\s*(\d+)(?:,\s*([0-9.]+))?\)$/i);
-        if (rgbMatch) {
-          return {
-            r: parseInt(rgbMatch[1], 10),
-            g: parseInt(rgbMatch[2], 10),
-            b: parseInt(rgbMatch[3], 10),
-            a: rgbMatch[4] !== undefined ? parseFloat(rgbMatch[4]) : 1
-          };
-        }
-        
-        // Match hex #rrggbb
-        var hexMatch = cssColor.match(/^#([0-9a-f]{6})$/i);
-        if (hexMatch) {
-          var hex = hexMatch[1];
-          return {
-            r: parseInt(hex.substring(0, 2), 16),
-            g: parseInt(hex.substring(2, 4), 16),
-            b: parseInt(hex.substring(4, 6), 16),
-            a: 1
-          };
-        }
-        
-        return null;
-      }
-
-      /**
-       * Walk up the DOM tree to find the nearest non-transparent background
-       */
-      function findEffectiveBackground(el) {
-        var current = el;
-        while (current && current.nodeType === 1) {
-          var style = getComputedStyle(current);
-          var bgColor = style.backgroundColor;
-          var parsed = parseColor(bgColor);
-          
-          // If we found a color with alpha > 0, use it
-          if (parsed && parsed.a > 0) {
-            return parsed;
-          }
-          
-          current = current.parentElement;
-        }
-        return null;
-      }
-
-      /**
-       * Determine theme based on luminance
-       * Threshold: 0.18 (below = dark, above = light)
-       */
-      function getThemeFromBg(rgb) {
-        if (!rgb) return 'light';
-        var luminance = getRelativeLuminance(rgb.r, rgb.g, rgb.b);
-        return (luminance < 0.18) ? 'dark' : 'light';
-      }
-
-      // Main logic
-      var root = document.getElementById('calca-roadmap');
-      if (!root) return;
-
-      // Step 1: Try to find effective background by walking up DOM
-      var bg = findEffectiveBackground(document.body) || findEffectiveBackground(document.documentElement);
-      var theme = getThemeFromBg(bg);
-
-      // Step 2: If no background found, check prefers-color-scheme
-      if (!bg) {
-        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        theme = prefersDark ? 'dark' : 'light';
-      }
-
-      // Step 3: Apply the theme
-      root.setAttribute('data-theme', theme);
-
-      // Expose API for manual override
-      window.CalcaRoadmap = {
-        setTheme: function(t) {
-          if (t === 'dark' || t === 'light') {
-            root.setAttribute('data-theme', t);
-          }
-        },
-        getTheme: function() {
-          return root.getAttribute('data-theme');
-        }
-      };
-    })();
-  </script>
-
-</body>
-</html>
+</section>
